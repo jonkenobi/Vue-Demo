@@ -13,7 +13,7 @@
             </div>
             <div class="error" v-if="error">{{error}}</div>
             <div>
-                <input type="button" @click="createUser" value="送信">
+                <input type="button" @click="createUser" value="送信"></input>
             </div>
         </div>
     </div>

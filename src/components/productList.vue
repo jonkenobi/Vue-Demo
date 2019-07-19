@@ -1,6 +1,5 @@
 <template>
     <div id="ProductList" class="container-fluid">
-
         <h2 id="title">
             {{title}}
         </h2>
@@ -18,51 +17,47 @@
         <!--                    class="tab"-->
         <!--            ></component>-->
         <!--        </div>-->
-        <div>
-            <div id="searchbar">
-                Search <input type="text">
-                <scan style="float:right"> 残高:10000
-                    <button style="margin: 0 0 4px 4px">チャージ</button>
-                </scan>
-            </div>
-
-            <table id="products" :style="errorMsgStyle">
-                <thead>
-                <tr>
-                    <th v-for="header in headers">
-                        {{header.text}}
-                    </th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr v-for="food in foods" :key="food.id">
-                    <td>{{food.id}}</td>
-                    <td>{{food.name}}</td>
-                    <td class="number-data">{{food.price}}</td>
-                    <td>
-                        <input type="number" v-model.lazy="food.stock" class="number-data" min="0">
-                    </td>
-                    <td class="number-data">
-                        {{food.price*food.stock|numberWithDelimiter}}
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="4">
-                        合計金額
-                    </td>
-                    <td class="number-data"> {{totalPrice|numberWithDelimiter}}</td>
-                </tr>
-                <tr>
-                    <td colspan="5">
-                        <center>
-                            <scan v-show="!canBuy" class="errorMsg">残高が足りません！</scan>
-                            <button @click="doBuy" :disabled="!canBuy">購入</button>
-                        </center>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+        <v-app>
+            <v-card max-width="1100px">
+                <v-card-title>Products
+                    <v-spacer></v-spacer>
+                    <v-text-field
+                            v-model="search"
+                            append-icon="search"
+                            label="Search"
+                            single-line
+                            hide-details
+                    ></v-text-field>
+                    <p style="float:right"> 残高:10000
+                        <button style="margin: 0 0 4px 4px">チャージ</button>
+                    </p>
+                </v-card-title>
+                <v-data-table :headers=headers :items="foods" :search="search" :style="errorMsgStyle">
+                    <template v-slot:items="props">
+                        <td>{{ props.item.id }}</td>
+                        <td class="text-xs-left">{{ props.item.name}}</td>
+                        <td class="text-xs-left">{{ props.item.price }}</td>
+                        <td class="text-xs-left"><input type="number" v-model.lazy="props.item.stock"
+                                                        class="number-data"
+                                                        min="0"></td>
+                        <td class="text-xs-right">{{props.item.price*props.item.stock|numberWithDelimiter}}</td>
+                    </template>
+                    <template v-slot:no-results>
+                        <v-alert :value="true" color="error" icon="warning">
+                            Your search for "{{ search }}" found no results.
+                        </v-alert>
+                    </template>
+                    <template v-slot:footer>
+                        <td :colspan="headers.length-1">
+                            <strong>合計金額</strong>
+                        </td>
+                        <td class="number-data text-xs-right"> {{totalPrice|numberWithDelimiter}}</td>
+                    </template>
+                </v-data-table>
+                <scan v-show="!canBuy" class="errorMsg">残高が足りません！</scan>
+                <v-btn color="primary" @click="doBuy" :disabled="!canBuy">購入</v-btn>
+            </v-card>
+        </v-app>
     </div>
 </template>
 
@@ -72,9 +67,12 @@
         data: function () {
             return {
                 title: '商品一覧',
+                search: '',
                 headers: [
                     {
-                        text: "商品番号", value: 'id'
+                        text: "商品番号",
+                        value: 'id',
+                        align: 'left',
                     },
                     {
                         text: "商品名", value: 'name'
@@ -86,7 +84,7 @@
                         text: "注文数", value: "stock"
                     },
                     {
-                        text: "金額", value: "subTotal"
+                        text: "金額", value: "subTotal", sortable:false
                     }
                 ],
                 foods: [
@@ -104,7 +102,8 @@
         },
         methods: {
             doBuy: function () {
-                alert("doBuy for this amount?");
+                //TODO Y/N option
+                alert("Buy for " + this.totalPrice + "?");
                 alert("Bought");
                 this.foods.forEach(function (food) {
                     food.stock = 0
@@ -162,7 +161,5 @@
 
 </script>
 
-<style scoped>
 
-</style>
 <style src="../assets/css/table.css"></style>

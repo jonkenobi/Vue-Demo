@@ -1,15 +1,15 @@
 table {
     float: left;
     position: relative;
-    left: 20%;
+
     border: 2px;
-    solid: #42b983;
+    solid:#24e98e;
     border-radius: 3px;
     background-color: #fff;
 }
 
 th {
-    background-color: #42b983;
+    background-color: #24e98e;
     color: rgba(255, 255, 255, 0.66);
     cursor: pointer;
     -webkit-user-select: none;
@@ -23,7 +23,7 @@ td {
 }
 
 th, td {
-    min-width: 120px;
+    min-width: 80px;
     padding: 10px 20px;
 }
 

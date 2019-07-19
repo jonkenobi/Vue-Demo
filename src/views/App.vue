@@ -7,7 +7,8 @@
                 <router-link to="/users" class="list-group-item list-group-item-action bg-light">ユーザ一覧</router-link>
                 <router-link to="/user/new" class="list-group-item list-group-item-action bg-light">新規ユーザ登録
                 </router-link>
-                <router-link to="/productList" class="list-group-item list-group-item-action bg-light">商品一覧</router-link>
+                <router-link to="/productList" class="list-group-item list-group-item-action bg-light">商品一覧
+                </router-link>
                 <!--            <router-link to="/login">ログイン</router-link>-->
                 <router-link to="/login" v-show="!auth.loggedIn()"
                              class="list-group-item list-group-item-action bg-light">ログイン
@@ -15,9 +16,7 @@
                 <router-link to="/logout" v-show="auth.loggedIn()"
                              class="list-group-item list-group-item-action bg-light">ログアウト
                 </router-link>
-
             </div>
-            <!--     <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>-->
         </div>
 
         <div id="page-content-wrapper">
@@ -78,8 +77,8 @@
         }
     }
 </script>
-<!--TODO CLICK DONT WORK YET $click maybe??-->
-<!--&lt;!&ndash; Bootstrap core JavaScript &ndash;&gt;-->
+<!--TODO CLICK DONT WORK YET $ not evaluated$click maybe??-->
+<!-- Bootstrap core JavaScript -->
 <!--<script src="../assets/css/startbootstrap-simple-sidebar-gh-pages/vendor/jquery/jquery.min.js"></script>-->
 <!--<script src="../assets/css/startbootstrap-simple-sidebar-gh-pages/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>-->
 
@@ -103,6 +102,15 @@
 
     #main h2 {
         color: #007bff;
+    }
+
+    button, input, textarea {
+        background-color: white;
+        border-style: groove;
+    }
+
+    button, input {
+        padding: 1px 3px 1px 3px;
     }
 </style>
 <style src="../assets/css/startbootstrap-simple-sidebar-gh-pages/vendor/bootstrap/css/bootstrap.min.css"></style>
