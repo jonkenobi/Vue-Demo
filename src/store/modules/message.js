@@ -1,0 +1,1 @@
+export default {unauthorized:"Not Authorized"}

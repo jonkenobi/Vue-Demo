@@ -9,6 +9,8 @@ import Login from './components/login'
 import Auth from './services/Authentication'
 import ProductList from './components/productList'
 
+import Store from '@/store/index.js'
+
 Vue.use(Router)
 
 const router = new Router({
@@ -17,15 +19,24 @@ const router = new Router({
         {
             path: '/',
             name: 'home',
-            component: Home
+            component: Home,
+            meta: {
+                isPublic: true
+            }
         },
         {
             path: '/users',
-            component: UsersList
+            component: UsersList,
+            meta:{
+                isPublic:true
+            }
         },
         {
             path: '/user/new',
-            component: UserCreate
+            component: UserCreate,
+            meta:{
+                isPublic:true
+            }
         },
         {
             path: '/user/:userId',
@@ -34,9 +45,13 @@ const router = new Router({
         },
         {
             path: '/login',
-            component: Login
+            component: Login,
+            meta: {
+                isPublic: true
+            }
         },
         {
+            //TODO
             path: '/logout',
             beforeEnter: function (to, from, next) {
                 Auth.logout()
@@ -46,8 +61,17 @@ const router = new Router({
         {
             path: '/productList',
             component: ProductList
+
         }
     ]
 })
 
+// router.beforeEach((to, from, next) => {
+//     if (to.matched.some(page => page.meta.isPublic) || Store.state.auth.token) {
+//         next()
+//     } else {
+//         next('/login')
+//     }
+// })
 export default router
+

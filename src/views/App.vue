@@ -61,20 +61,17 @@
 
 <script>
     import Auth from '../services/Authentication'
-    // import UsersList from '../components/usersList'
-    import dt from '../components/usersData';
-
-    let usersData = dt.getData();
+    // import store from '../store/index'
 
     export default {
         name: 'app',
-        // components: {UsersList},
         data() {
             return {
                 auth: Auth,
-                usersData: usersData
+                usersData: this.$store.state.usersData
             }
-        }
+        },
+        // store
     }
 </script>
 <!--TODO CLICK DONT WORK YET $ not evaluated$click maybe??-->
@@ -104,14 +101,14 @@
         color: #007bff;
     }
 
-    button, input, textarea {
-        background-color: white;
-        border-style: groove;
-    }
+    /*button, input, textarea {*/
+    /*    background-color: white;*/
+    /*    border-style: groove;*/
+    /*}*/
 
-    button, input {
-        padding: 1px 3px 1px 3px;
-    }
+    /*button, input {*/
+    /*    padding: 1px 3px 1px 3px;*/
+    /*}*/
 </style>
 <style src="../assets/css/startbootstrap-simple-sidebar-gh-pages/vendor/bootstrap/css/bootstrap.min.css"></style>
 <style src="../assets/css/startbootstrap-simple-sidebar-gh-pages/css/simple-sidebar.css"></style>
