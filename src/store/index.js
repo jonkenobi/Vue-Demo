@@ -11,7 +11,8 @@ import users from '@/store/modules/users'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-    state:{
+    state: {
+        CurrentBalance: 10000,
         usersData: [
             {
                 id: 1,
@@ -36,6 +37,19 @@ export default new Vuex.Store({
                 description:
                     'カッコイイ'
             }]
+    },
+    mutations: {
+        deductMoney(state, totalPrice) {
+            state.CurrentBalance -= parseInt(totalPrice)
+        },
+        chargeMoney(state, chargeAmount) {
+            state.CurrentBalance += parseInt(chargeAmount)
+        }
+    },
+    actions: {
+        paymentVerification(context) {
+            context.commit('deductMoney')
+        }
     },
     modules: {
         auth,

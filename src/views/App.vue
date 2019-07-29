@@ -1,21 +1,19 @@
 <template>
     <div class="d-flex" id="wrapper">
         <div class="bg-light border-right" id="sidebar-wrapper">
-            <div class="sidebar-heading">Start Bootstrap</div>
+            <div class="sidebar-heading">Vue.js DEMO</div>
             <div class="list-group list-group-flush">
                 <router-link to="/" class="list-group-item list-group-item-action bg-light">Home</router-link>
                 <router-link to="/users" class="list-group-item list-group-item-action bg-light">ユーザ一覧</router-link>
                 <router-link to="/user/new" class="list-group-item list-group-item-action bg-light">新規ユーザ登録
                 </router-link>
+
+                <router-link to="/user/accountInfo" class="list-group-item list-group-item-action bg-light">Xユーザー口座情報X
+            </router-link>
                 <router-link to="/productList" class="list-group-item list-group-item-action bg-light">商品一覧
                 </router-link>
                 <!--            <router-link to="/login">ログイン</router-link>-->
-                <router-link to="/login" v-show="!auth.loggedIn()"
-                             class="list-group-item list-group-item-action bg-light">ログイン
-                </router-link>
-                <router-link to="/logout" v-show="auth.loggedIn()"
-                             class="list-group-item list-group-item-action bg-light">ログアウト
-                </router-link>
+
             </div>
         </div>
 
@@ -32,10 +30,17 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+<!--                            <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"-->
+                               <router-link to="/"class="nav-link"><v-layout justify-space-around><v-icon medium>home</v-icon></v-layout></router-link>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
+                            <router-link to="/login" v-show="!auth.loggedIn()"
+                                         class="nav-link">ログイン
+                            </router-link>
+                            <router-link to="/logout" v-show="auth.loggedIn()"
+                                         class="list-group-item list-group-item-action bg-light">ログアウト
+                            </router-link>
+<!--                            <a class="nav-link" href="#">Link</a>-->
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -53,7 +58,7 @@
                 </div>
             </nav>
             <div id="main">
-                <router-view v-bind:usersData="usersData"></router-view>
+                <router-view v-bind:usersData="usersData" v-bind:CurrentBalance="CurrentBalance"></router-view>
             </div>
         </div>
     </div>
@@ -61,14 +66,20 @@
 
 <script>
     import Auth from '../services/Authentication'
-    // import store from '../store/index'
 
     export default {
         name: 'app',
         data() {
             return {
                 auth: Auth,
-                usersData: this.$store.state.usersData
+            }
+        },
+        computed: {
+            usersData() {
+                return this.$store.state.usersData
+            },
+            CurrentBalance(){
+                return this.$store.state.CurrentBalance
             }
         },
         // store
@@ -94,7 +105,7 @@
         -moz-osx-font-smoothing: grayscale;
         text-align: center;
         color: #2c3e50;
-        margin-top: 60px;
+        margin-top: 20px;
     }
 
     #main h2 {

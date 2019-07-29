@@ -1,1 +1,3 @@
-export default {unauthorized:"Not Authorized"}
+export default {
+    namespaced: true,
+    unauthorized:"Not Authorized"}

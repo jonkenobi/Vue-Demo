@@ -1,16 +1,68 @@
 <template>
-    <h2 class="home">
-        ホームページ
-    </h2>
+    <div id="home" class="home">
+        <h2>ホームページ</h2>
+        <v-app>
+            <v-layout justify-center>
+                <v-card width="50%" height="80%">
+                    Balance:{{CurrentBalance}}
+                    <br>
+                    <v-container grid-list-md>
+                        <v-layout row wrap>
+                            <v-flex md3>
+                                <v-text>購入額</v-text>
+                            </v-flex>
+                            <v-flex md9>
+                                <v-text-field xs9 solo type="number" min="0"
+                                              v-model="totalPrice"></v-text-field>
+                            </v-flex>
+                        </v-layout>
+                    </v-container>
+                    <v-btn @click="deductMoney(totalPrice);totalPrice=0">Buy for {{totalPrice}}</v-btn>
+                    <v-btn v-if="promptChargeWhenUnderThreshold" @click="chargeMoney(quickChargeAmount)">Quick
+                        charge
+                        for {{quickChargeAmount}}?
+                    </v-btn>
+                    <chargePopup></chargePopup>
+                </v-card>
+                <br>
+            </v-layout>
+        </v-app>
+    </div>
 
 </template>
 
 <script>
+    import {mapMutations} from 'vuex'
+    import chargePopup from '@/components/chargeDialogTemplate'
+
     export default {
         name: 'home',
-        // data() {
-        //     msg: 'Welcome to Your Vue.js App'
-        // }
+        components: {
+            chargePopup
+        },
+        data() {
+            return {
+                totalPrice: 0,
+                quickChargeAmount: 1000
+
+            }
+        },
+        props: {
+            'CurrentBalance': {
+                type: Number
+            }
+        },
+        methods: {
+            ...mapMutations([
+                'deductMoney', "chargeMoney"
+            ])
+        },
+        computed: {
+            promptChargeWhenUnderThreshold: function () {
+                let PROMPT_CHARGE_THRESHOLD = 2000
+                return this.CurrentBalance < PROMPT_CHARGE_THRESHOLD
+            }
+        },
     }
 </script>
 
