@@ -1,17 +1,14 @@
 <template>
     <v-dialog v-model="showDialog" width="500">
         <template v-slot:activator="{ on }">
-            <v-btn color="red lighten-2"
-                   dark
-                   v-on="on">
+            <v-btn color="red lighten-2" dark v-on="on">
                 {{buttonText}}
             </v-btn>
         </template>
 
         <v-card>
-            <v-card-title class="headline grey lighten-2 justify-center"
-                          color="primary">
-                入金
+            <v-card-title class="headline grey lighten-2 justify-center" color="primary">
+                {{title}}
             </v-card-title>
             <v-container grid-list-md>
                 <v-layout row wrap>
@@ -29,11 +26,7 @@
 
             <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn
-                        color="primary"
-                        text
-                        @click="closeDialog();chargeMoney(chargeAmount)"
-                >
+                <v-btn color="primary" text @click="closeDialog();chargeMoney(chargeAmount)">
                     実行
                 </v-btn>
                 <v-btn color="secondary" @click="closeDialog">キャンセル</v-btn>
@@ -46,13 +39,14 @@
     import {mapMutations} from 'vuex'
 
     export default {
-        name: "v-dialogTemplate",
+        name: "chargeDialogTemplate",
         data() {
             return {
-                showDialog: false,
-                chargeAmount: 0,
                 buttonText:
-                    "チャージ"
+                    "チャージ",
+                title: "入金",
+                showDialog: false,
+                chargeAmount: 1000,
             }
         },
         methods: {
@@ -63,19 +57,5 @@
                 this.showDialog = false
             }
         },
-        //PLEASE ASSIGN PASS THESE PROPS FOR USE
-        // props: {
-        //     'displayMessage':
-        //         {type: String},
-        //     'title': {type: String},
-        //     'buttonsTexts': {
-        //         type: Array
-        //     }
-        // }
-
     }
 </script>
-
-<style scoped>
-
-</style>

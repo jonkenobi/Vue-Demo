@@ -16,9 +16,6 @@
     //         callback(null,usersData)
     //     }, 300)
     // }
-    import {mapState} from "vuex";
-
-
     export default {
         name: "usersList",
         data() {

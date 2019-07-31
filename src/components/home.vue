@@ -33,7 +33,7 @@
 
 <script>
     import {mapMutations} from 'vuex'
-    import chargePopup from '@/components/chargeDialogTemplate'
+    import chargePopup from '@/components/templates/chargeDialogTemplate'
 
     export default {
         name: 'home',
@@ -44,7 +44,6 @@
             return {
                 totalPrice: 0,
                 quickChargeAmount: 1000
-
             }
         },
         props: {

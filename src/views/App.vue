@@ -6,32 +6,28 @@
                 <router-link to="/" class="list-group-item list-group-item-action bg-light">Home</router-link>
                 <router-link to="/users" class="list-group-item list-group-item-action bg-light">ユーザ一覧</router-link>
                 <router-link to="/user/new" class="list-group-item list-group-item-action bg-light">新規ユーザ登録
+                </router-link>                <router-link to="/productList" class="list-group-item list-group-item-action bg-light">商品一覧
                 </router-link>
-
-                <router-link to="/user/accountInfo" class="list-group-item list-group-item-action bg-light">Xユーザー口座情報X
-            </router-link>
-                <router-link to="/productList" class="list-group-item list-group-item-action bg-light">商品一覧
-                </router-link>
-                <!--            <router-link to="/login">ログイン</router-link>-->
-
             </div>
         </div>
 
         <div id="page-content-wrapper">
             <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                 <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
-
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                        <li class="nav-item active">
-<!--                            <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"-->
-                               <router-link to="/"class="nav-link"><v-layout justify-space-around><v-icon medium>home</v-icon></v-layout></router-link>
+                        <li class="nav-item  active">
+                            <!--                   <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"-->
+                            <router-link to="/" class="nav-link">
+                                <v-layout justify-space-around>
+                                    <v-icon medium>home</v-icon>
+                                </v-layout>
+                            </router-link>
                         </li>
                         <li class="nav-item">
                             <router-link to="/login" v-show="!auth.loggedIn()"
@@ -40,7 +36,6 @@
                             <router-link to="/logout" v-show="auth.loggedIn()"
                                          class="list-group-item list-group-item-action bg-light">ログアウト
                             </router-link>
-<!--                            <a class="nav-link" href="#">Link</a>-->
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -66,6 +61,7 @@
 
 <script>
     import Auth from '../services/Authentication'
+    import {mapState} from 'vuex'
 
     export default {
         name: 'app',
@@ -75,17 +71,14 @@
             }
         },
         computed: {
-            usersData() {
-                return this.$store.state.usersData
-            },
-            CurrentBalance(){
-                return this.$store.state.CurrentBalance
-            }
-        },
-        // store
+            ...mapState({
+                "usersData": state => state.users.usersData,
+                "CurrentBalance": state => state.cashOperations.CurrentBalance
+            })
+        }
     }
 </script>
-<!--TODO CLICK DONT WORK YET $ not evaluated$click maybe??-->
+<!--TODO TOGGLE MENU button on CLICK doesn't WORK YET $ not evaluated$click maybe??-->
 <!-- Bootstrap core JavaScript -->
 <!--<script src="../assets/css/startbootstrap-simple-sidebar-gh-pages/vendor/jquery/jquery.min.js"></script>-->
 <!--<script src="../assets/css/startbootstrap-simple-sidebar-gh-pages/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>-->

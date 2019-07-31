@@ -8,9 +8,8 @@ import UserCreate from './components/userCreate'
 import Login from './components/login'
 import Auth from './services/Authentication'
 import ProductList from './components/productList'
-import AccountInfo from './components/accountInfo'
 
-import Store from '@/store/index.js'
+// import Store from '@/store/index.js'
 
 Vue.use(Router)
 
@@ -43,11 +42,6 @@ const router = new Router({
             path: '/user/:userId',
             name: 'user',
             component: UserDetail
-        },
-        {
-            path: '/user/accountInfo',
-            component: AccountInfo,
-
         },
         {
             path: '/login',

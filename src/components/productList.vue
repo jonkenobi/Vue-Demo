@@ -61,8 +61,10 @@
                                 <td class="number-data text-xs-right"> {{totalPrice|numberWithDelimiter}}</td>
                             </template>
                         </v-data-table>
-                        <scan v-show="!canBuy" class="errorMsg">残高が足りません！</scan>
-                        <v-btn color="primary" @click="doBuy " :disabled="!canBuy">購入</v-btn>
+                        <p v-show="!canBuy" class="errorMsg">残高が足りません！</p>
+                        <do-buy :totalPrice="totalPrice" :can-buy="canBuy" @buyConfirmed="doBuy()" ></do-buy>
+<!--                        TODO disable buy when balance not enough to buy -->
+                        <!-- <v-btn color="primary" @click="doBuy " :disabled="!canBuy">購入</v-btn>-->
                     </v-card>
                 </v-layout>
             </v-container>
@@ -71,12 +73,15 @@
 </template>
 
 <script>
-    import chargePopup from "@/components/chargeDialogTemplate"
+    import chargePopup from "@/components/templates/chargeDialogTemplate"
+    import doBuy from "@/components/templates/doBuyTemplate"
+    import {mapMutations} from "vuex";
 
     export default {
         name: "ProductList",
         components: {
-            chargePopup
+            chargePopup,
+            doBuy
         },
         props: {
             'CurrentBalance': {
@@ -130,13 +135,14 @@
         },
         methods: {
             doBuy: function () {
-                //TODO Y/N option
-                alert("Buy for " + this.totalPrice + "?");
-                alert("Bought");
+                this.deductMoney(this.totalPrice);
                 this.foods.forEach(function (food) {
                     food.stock = 0
                 })
-            }
+            },
+            ...mapMutations([
+                'deductMoney'
+            ])
         },
         computed: {
             totalPrice: function () {
@@ -145,7 +151,7 @@
                 }, 0)
             },
             canBuy: function () {
-                return this.totalPrice <= 10000 // TODO wallet money 10000
+                return this.totalPrice <= this.CurrentBalance
             },
             errorMsgStyle: function () {
                 return {

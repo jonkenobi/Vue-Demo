@@ -5,9 +5,6 @@ import routes from './router'
 import store from '@/store'
 import VeeValidate from 'vee-validate'
 
-//TODO
-// import 'vuetify/dist/vuetify.min.css'
-
 Vue.use(VeeValidate)
 Vue.config.productionTip = false
 
