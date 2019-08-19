@@ -37,15 +37,15 @@
 
                         </v-card-title>
                         <v-data-table :headers=headers :items="foods" :search="search" :style="errorMsgStyle">
+
                             <template v-slot:items="props">
                                 <td>{{ props.item.id }}</td>
                                 <td class="text-xs-left">{{ props.item.name}}</td>
-                                <td class="text-xs-left">{{ props.item.price }}</td>
+                                <td class="text-xs-left" >{{ props.item.price }}</td>
                                 <td class="text-xs-left">
-                                    <!--                                    <money v-model="props.item.stock">{{props.item.stock}}</money>-->
-                                    <input type="number" v-model.lazy="props.item.stock"
-                                           class="number-data"
-                                           min="0">
+                                    <v-text-field type="number" v-model.lazy="props.item.stock" solo
+                                                  class="number-data text-field-height-and-padding" style="width:100px"
+                                                  min="0"></v-text-field>
                                 </td>
                                 <td class="text-xs-right">{{props.item.price*props.item.stock|numberWithDelimiter}}</td>
                             </template>
@@ -62,8 +62,8 @@
                             </template>
                         </v-data-table>
                         <p v-show="!canBuy" class="errorMsg">残高が足りません！</p>
-                        <do-buy :totalPrice="totalPrice" :can-buy="canBuy" @buyConfirmed="doBuy()" ></do-buy>
-<!--                        TODO disable buy when balance not enough to buy -->
+                        <do-buy :totalPrice="totalPrice" :can-buy="canBuy" @buyConfirmed="doBuy()"></do-buy>
+                        <!--                        TODO disable buy when balance not enough to buy -->
                         <!-- <v-btn color="primary" @click="doBuy " :disabled="!canBuy">購入</v-btn>-->
                     </v-card>
                 </v-layout>
@@ -194,5 +194,17 @@
     //---------------------------------------------------------------------------------
 
 </script>
+<style scoped>
+    .text-field-height-and-padding {
+        /*height, padding を固定；
+        widthに関しては各欄ごと、入力違うので各自で設定*/
+        height: 50px;
+        padding: 0px 10px;
+    }
+
+    td{
+        height:300px;
+    }
+</style>
 
 <style src="../assets/css/table.css"></style>

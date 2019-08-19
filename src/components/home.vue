@@ -13,16 +13,27 @@
                             </v-flex>
                             <v-flex md9>
                                 <v-text-field xs9 solo type="number" min="0"
-                                              v-model="totalPrice"></v-text-field>
+                                              v-model="totalPrice" style="width: 120px;"></v-text-field>
                             </v-flex>
                         </v-layout>
                     </v-container>
-                    <v-btn @click="deductMoney(totalPrice);totalPrice=0">Buy for {{totalPrice}}</v-btn>
+                    <v-btn @click="deductMoney(totalPrice)totalPrice=0">Buy for {{totalPrice}}</v-btn>
                     <v-btn v-if="promptChargeWhenUnderThreshold" @click="chargeMoney(quickChargeAmount)">Quick
                         charge
                         for {{quickChargeAmount}}?
                     </v-btn>
                     <chargePopup></chargePopup>
+
+
+                    <v-checkbox
+                            :input-value="isTransferred('transferred')"
+                            :disabled="isTransferred('transferred')"
+                    ></v-checkbox>
+                    <!--                    <v-checkbox-->
+                    <!--                            :input-value=isTransferred('transferrd')?true:false-->
+                    <!--                            :disabled="isTransferred('transfered')"-->
+                    <!--                    ></v-checkbox>-->
+
                 </v-card>
                 <br>
             </v-layout>
@@ -34,6 +45,7 @@
 <script>
     import {mapMutations} from 'vuex'
     import chargePopup from '@/components/templates/chargeDialogTemplate'
+
 
     export default {
         name: 'home',
@@ -49,39 +61,36 @@
         props: {
             'CurrentBalance': {
                 type: Number
-            }
+            },
         },
         methods: {
             ...mapMutations([
                 'deductMoney', "chargeMoney"
-            ])
+            ]),
+            isTransferred(data) {
+                return data === "transferred"
+            },
+            OfficialBondRegistration: function () {
+                this.totalPrice = 9000
+            }
         },
         computed: {
             promptChargeWhenUnderThreshold: function () {
-                let PROMPT_CHARGE_THRESHOLD = 2000
+                let PROMPT_CHARGE_THRESHOLD = 2000;
                 return this.CurrentBalance < PROMPT_CHARGE_THRESHOLD
-            }
+            },
+
+
         },
     }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-    h3 {
-        margin: 40px 0 0;
+<style>
+    h2 {
+        color: red;
     }
 
-    ul {
-        list-style-type: none;
-        padding: 0;
-    }
-
-    li {
-        display: inline-block;
-        margin: 0 10px;
-    }
-
-    a {
-        color: #42b983;
-    }
 </style>
+
+

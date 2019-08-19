@@ -7,15 +7,25 @@
                 <router-link :to="{path:'/user/'+user.id}">{{user.name}}</router-link>
             </h2>
         </div>
+        <Registration-btn :is-disabled="!canDoTemporaryRegistration" v-on:action="OfficialBondRegistration">
+            <template #buttonText>仮登録</template>
+            <template #text>入力内容を仮登録しますか？</template>
+            <template #afterConfirmationMsg>社債情報が仮登録されました！</template>
+            <template #afterConfirmationBtn></template>
+        </Registration-btn>
+        <br>
+
+        <Registration-btn :is-disabled="!canDoOfficialRegistration">
+            <template #buttonText>本登録</template>
+            <template #text><p>入力内容を本登録しますか？</p></template>
+            <template #afterConfirmationBtn>Ok</template>
+        </Registration-btn>
     </div>
 </template>
 
 <script>
-    // let getUsers = function (callback) {
-    //     setTimeout(function () {
-    //         callback(null,usersData)
-    //     }, 300)
-    // }
+    import RegistrationBtn from '@/components/templates/RegistrationButton'
+
     export default {
         name: "usersList",
         data() {
@@ -27,12 +37,20 @@
                 error: null
             }
         },
+        components:{RegistrationBtn},
         props:{
             'usersData':{
                 type:Array
             }
+        },
+        computed: {
+            canDoTemporaryRegistration: function () {
+                return true
+            },
+            canDoOfficialRegistration: function () {
+                return false
+            }
         }
-
         // // get Data on initialization
         // created: function () {
         //     this.fetchData()

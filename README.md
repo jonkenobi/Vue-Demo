@@ -1,4 +1,4 @@
-# router2
+# Vue demo web application
 
 ## Project setup
 ```
