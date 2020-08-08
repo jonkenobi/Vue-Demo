@@ -17,24 +17,17 @@
                             </v-flex>
                         </v-layout>
                     </v-container>
-                    <v-btn @click="deductMoney(totalPrice)totalPrice=0">Buy for {{totalPrice}}</v-btn>
+                    <v-btn @click="deductMoney(totalPrice)">Buy for {{totalPrice}}</v-btn>
                     <v-btn v-if="promptChargeWhenUnderThreshold" @click="chargeMoney(quickChargeAmount)">Quick
                         charge
                         for {{quickChargeAmount}}?
                     </v-btn>
                     <chargePopup></chargePopup>
-
-
-                    <v-checkbox
-                            :input-value="isTransferred('transferred')"
-                            :disabled="isTransferred('transferred')"
-                    ></v-checkbox>
-                    <!--                    <v-checkbox-->
-                    <!--                            :input-value=isTransferred('transferrd')?true:false-->
-                    <!--                            :disabled="isTransferred('transfered')"-->
-                    <!--                    ></v-checkbox>-->
-
-                </v-card>
+                     <v-checkbox
+                                                :input-value="isTransferred('transferred')"
+                                                :disabled="isTransferred('transferred')"
+                     ></v-checkbox>
+                  </v-card>
                 <br>
             </v-layout>
         </v-app>
