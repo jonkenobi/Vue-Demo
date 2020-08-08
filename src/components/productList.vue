@@ -41,7 +41,7 @@
                             <template v-slot:items="props">
                                 <td>{{ props.item.id }}</td>
                                 <td class="text-xs-left">{{ props.item.name}}</td>
-                                <td class="text-xs-left" >{{ props.item.price }}</td>
+                                <td class="text-xs-left">{{ props.item.price }}</td>
                                 <td class="text-xs-left">
                                     <v-text-field type="number" v-model.lazy="props.item.stock" solo
                                                   class="number-data text-field-height-and-padding" style="width:100px"
@@ -202,8 +202,8 @@
         padding: 0px 10px;
     }
 
-    td{
-        height:300px;
+    td {
+        height: 300px;
     }
 </style>
 

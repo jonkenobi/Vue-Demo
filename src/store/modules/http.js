@@ -3,7 +3,7 @@ import axios from 'axios'
 export default {
     namespaced: true,
     actions: {
-        async request ({ dispatch, rootState }, { method, url, data, error }) {
+        async request({dispatch, rootState}, {method, url, data, error}) {
             const headers = {}
             headers['Content-Type'] = 'application/json'
             if (rootState.auth.token) {
@@ -29,11 +29,11 @@ export default {
             //         )
             //     })
         },
-        async post ({ dispatch }, requests) {
+        async post({dispatch}, requests) {
             requests.method = 'post'
             return dispatch('request', requests)
         },
-        async delete ({ dispatch }, requests) {
+        async delete({dispatch}, requests) {
             requests.method = 'delete'
             return dispatch('request', requests)
         }

@@ -1,3 +1,4 @@
 export default {
     namespaced: true,
-    unauthorized:"Not Authorized"}
+    unauthorized: "Not Authorized"
+}

@@ -23,10 +23,10 @@
                         for {{quickChargeAmount}}?
                     </v-btn>
                     <chargePopup></chargePopup>
-                     <v-checkbox
-                                                :input-value="isTransferred('transferred')"
-                                                :disabled="isTransferred('transferred')"
-                     ></v-checkbox>
+<!--                     <v-checkbox-->
+                    <!--                                                :input-value="isTransferred('transferred')"-->
+                    <!--                                                :disabled="isTransferred('transferred')"-->
+                    <!--                     ></v-checkbox>-->
                   </v-card>
                 <br>
             </v-layout>

@@ -31,7 +31,7 @@
                 <v-spacer></v-spacer>
                 <v-btn color="primary"
                        text
-                       @click="closeDialog()chargeMoney(chargeAmount)">
+                       @click="closeDialog();chargeMoney(chargeAmount)">
                     実行
                 </v-btn>
                 <v-btn color="secondary" @click="closeDialog">キャンセル</v-btn>

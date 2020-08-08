@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import './plugins/vuetify'
-import App from './views/App.vue'
+import App from './App.vue'
 import routes from './router'
 import store from '@/store'
 import VeeValidate from 'vee-validate'

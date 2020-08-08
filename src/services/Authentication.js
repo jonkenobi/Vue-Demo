@@ -3,7 +3,7 @@ const Auth = {
         setTimeout(function () {
             if (email === 'vue@example.com' && pass === 'vue') {
                 localStorage.token = Math.random().toString(36).substring(7)
-                //TODO　WTF is cb
+                //TODO　what is cb
                 if (cb) {
                     cb
                     {
@@ -24,7 +24,7 @@ const Auth = {
         delete localStorage.token
     },
 
-    loggedIn :function () {
+    loggedIn: function () {
         return !!localStorage.token
     }
 }

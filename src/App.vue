@@ -6,7 +6,8 @@
                 <router-link to="/" class="list-group-item list-group-item-action bg-light">Home</router-link>
                 <router-link to="/users" class="list-group-item list-group-item-action bg-light">ユーザ一覧</router-link>
                 <router-link to="/user/new" class="list-group-item list-group-item-action bg-light">新規ユーザ登録
-                </router-link>                <router-link to="/productList" class="list-group-item list-group-item-action bg-light">商品一覧
+                </router-link>
+                <router-link to="/productList" class="list-group-item list-group-item-action bg-light">商品一覧
                 </router-link>
             </div>
         </div>
@@ -60,7 +61,7 @@
 </template>
 
 <script>
-    import Auth from '../services/Authentication'
+    import Auth from './services/Authentication'
     import {mapState} from 'vuex'
 
     export default {
@@ -114,6 +115,6 @@
     /*    padding: 1px 3px 1px 3px;*/
     /*}*/
 </style>
-<style src="../assets/css/startbootstrap-simple-sidebar-gh-pages/vendor/bootstrap/css/bootstrap.min.css"></style>
-<style src="../assets/css/startbootstrap-simple-sidebar-gh-pages/css/simple-sidebar.css"></style>
+<style src="./assets/css/startbootstrap-simple-sidebar-gh-pages/vendor/bootstrap/css/bootstrap.min.css"></style>
+<style src="./assets/css/startbootstrap-simple-sidebar-gh-pages/css/simple-sidebar.css"></style>
 

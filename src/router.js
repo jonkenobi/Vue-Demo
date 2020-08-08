@@ -27,15 +27,15 @@ const router = new Router({
         {
             path: '/users',
             component: UsersList,
-            meta:{
-                isPublic:true
+            meta: {
+                isPublic: true
             }
         },
         {
             path: '/user/new',
             component: UserCreate,
-            meta:{
-                isPublic:true
+            meta: {
+                isPublic: true
             }
         },
         {
