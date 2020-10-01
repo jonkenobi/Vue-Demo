@@ -6,6 +6,7 @@ e-commerce site-ish functions on the website.
 
 This is a simple static web app.  
 
+(I was also reading other computer science books and doing java, so more like half of the time in 2-3 weeks I was doing vue)
 ## Prerequisites
 1. npm 
 
